@@ -1,0 +1,46 @@
+<%- include('../partials/header.ejs') %>
+<div class="content">
+    <div class="center-container">
+        <form style="width: 100%;">
+            <div class="event-heading">
+                <h3 class="dis-in-bl">Edit Profile</h3>
+                <div class="float-right">
+                    <button class="button update-btn" type="submit" formmethod="GET" formaction="/users/profile">Show Profile</button>
+                    <button class="button password-btn" type="submit" formmethod="GET" formaction="/users/profile/change-password">Update Password</button>
+                </div>
+            </div>
+        </form>
+        <form action='/users/profile/edit' method = 'POST' class="mt-20">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" class = "fixed-width" value="<%= user.firstName %>" required>
+
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" class = "fixed-width" value="<%= user.lastName %>" required>
+
+            <label for="address">Address</label>
+            <input type="text" id="address" name="address" class = "fixed-width" value="<%= user.address %>" required>
+
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" class = "fixed-width" value="<%= user.city %>" required>
+
+            <label for="zip">Zip</label>
+            <input type="text" id="zip" name="zip" class = "fixed-width" value="<%= user.zip %>" required>
+
+            <label for="state">State</label>
+            <input type="text" id="state" name="state" class = "fixed-width" value="<%= user.state %>" required>
+
+            <label for="interests">Interests</label>
+            <select id="interests" name="interests" class="fixed-width" required>
+                <option value="All" <% if(user.interests === "All"){ %> selected <% } %>>All</option>
+                <option value="Sports" <% if(user.interests === "Sports"){ %> selected <% } %>>Sports</option>
+                <option value="Music" <% if(user.interests === "Music"){ %> selected <% } %>>Music</option>
+                <option value="Games" <% if(user.interests === "Games"){ %> selected <% } %>>Games</option>
+                <option value="Adventure" <% if(user.interests === "Adventure"){ %> selected <% } %>>Adventure</option>
+                <option value="Health" <% if(user.interests === "Health"){ %> selected <% } %>>Health</option>
+            </select>
+
+            <button class="button submit-btn mb-100">Update Profile</button>
+        </form>
+    </div>
+</div>
+<%- include('../partials/footer.ejs') %>

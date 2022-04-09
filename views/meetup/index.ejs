@@ -1,0 +1,55 @@
+<%- include('../partials/header.ejs') %>
+    <div class="content">
+        <div class="center-container mb-100">
+            <div class="event-heading">
+                <h3 class="dis-in-bl">Meetups</h3>
+                <div class="float-right" style="width: 50%;">
+                    <form style="width: 100%;" action='/meetups' method = 'GET'>
+                        <div class="input-row">
+                            <input type="text" id="search" name="search" value="<%= search %>" placeholder="Search here..">
+                            <select id="interests" name="interests" style="margin-left: 10px;"  required>
+                                <option value="All" <% if(interests === "All"){ %> selected <% } %> >All</option>
+                                <option value="Sports" <% if(interests === "Sports"){ %> selected <% } %> >Sports</option>
+                                <option value="Music" <% if(interests === "Music"){ %> selected <% } %> >Music</option>
+                                <option value="Games" <% if(interests === "Games"){ %> selected <% } %> >Games</option>
+                                <option value="Adventure" <% if(interests === "Adventure"){ %> selected <% } %> >Adventure</option>
+                                <option value="Health" <% if(interests === "Health"){ %> selected <% } %> >Health</option>
+                            </select>    
+                            <button type="submit" class="button submit-btn btn-filter">Filter</button>        
+                        </div>
+                    </form>
+                    
+                </div>
+            </div>
+
+            <% if(meetups.length){ %>
+            <table>
+                <tr>
+                  <th>Meetup</th>
+                  <th>Category</th>
+                  <th>Host</th>
+                  <th>Location</th>
+                  <th>Interest</th>
+                  <th>Action</th>
+                </tr>
+                <% meetups.forEach(meetup => { %>
+                <tr>
+                    <td><%= meetup.name %></td>
+                    <td><%= meetup.topic %></td>
+                    <td><%= meetup.host.firstName+' '+meetup.host.lastName %></td>
+                    <td><%= meetup.location %></td>
+                    <td><%= meetup.interests %></td>
+                    <td>
+                        <form style="float: left;">
+                            <button class="button update-btn" type="submit" formmethod="GET" formaction="/meetups/<%= meetup._id %>">View</button>
+                        </form>
+                    </td>
+                </tr>
+                <% }); %>
+            </table>
+            <% } else { %>
+                <p style="margin: 20px auto;width: 95%;">There are no meetups to display.</p>
+            <% } %>
+        </div>
+    </div>
+<%- include('../partials/footer.ejs') %>

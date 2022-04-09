@@ -1,0 +1,29 @@
+<%- include('../partials/header.ejs')%>
+<div class="content">
+    <div class="center-container mb-100">
+        <div class="event-heading">
+            <h3 class="dis-in-bl"><%= meetup.name %>'s Attendees</h3>
+        </div>
+        <% if(attendees.length){ %>
+        <table>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>City</th>
+              <th>State</th>
+            </tr>
+            <% attendees.forEach(attendee => { %>
+            <tr>
+                <td><%= attendee.firstName %></td>
+                <td><%= attendee.lastName %></td>
+                <td><%= attendee.city %></td>
+                <td><%= attendee.state %></td>
+            </tr>
+            <% }); %>
+        </table>
+        <% } else { %>
+            <p style="margin: 20px auto;width: 95%;">There are no attendees to display.</p>
+        <% } %>
+    </div>
+</div>
+<%- include('../partials/footer.ejs')%>

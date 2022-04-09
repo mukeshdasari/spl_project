@@ -1,0 +1,36 @@
+
+<%- include('../partials/header.ejs')%>
+<div class="content">
+    <div class="center-container mb-100">
+        <div class="event-heading">
+            <h3 class="dis-in-bl">My Meetups</h3>
+        </div>
+        <% if(meetups.length){ %>
+        <table>
+            <tr>
+              <th>Meetup</th>
+              <th>Category</th>
+              <th>Location</th>
+              <th>Action</th>
+            </tr>
+            <% meetups.forEach(meetup => { %>
+            <tr>
+                <td><%= meetup.name %></td>
+                <td><%= meetup.topic %></td>
+                <td><%= meetup.location %></td>
+                <td>
+                    <form style="float: left;">
+                        <button class="button update-btn" type="submit" formmethod="GET" formaction="/meetups/<%= meetup._id %>/edit">Edit</button>
+                        <button class="button delete-btn" type="submit" formmethod="POST" formaction="/meetups/<%= meetup._id %>?_method=DELETE">Delete</button>
+                        <button class="button btn-secondary" type="submit" formmethod="GET" formaction="/meetups/attendees/<%= meetup._id %>">View Attendees</button>
+                    </form>
+                </td>
+            </tr>
+            <% }); %>
+        </table>
+        <% } else { %>
+            <p style="margin: 20px auto;width: 95%;">There are no meetups to display.</p>
+        <% } %>
+    </div>
+</div>
+<%- include('../partials/footer.ejs')%>

@@ -1,0 +1,43 @@
+<%- include('../partials/header.ejs') %>
+<div class="content">
+    <div class="center-container">
+        <div class="event-heading">
+            <h3 class="dis-in-bl"><%= meetup.name %></h3>
+            <% if(user == meetup.host._id) { %>
+                <div class="float-right">
+                    <form style="width: 100%;">
+                        <button class="button update-btn" type="submit" formmethod="GET" formaction="/meetups/<%= meetup._id %>/edit">Edit</button>
+                        <button class="button delete-btn" type="submit" formmethod="POST" formaction="/meetups/<%= meetup._id %>?_method=DELETE">Delete</button>
+                    </form>
+                </div>
+            <% } %>
+            <% if(!(user == meetup.host._id)) { %>
+                <div class="float-right">
+                    <form style="width: 100%;" class="form-inline" action='/meetups/markAttending' method = 'POST'>
+                        <div class="form-group">
+                            <input type="hidden" id="id" name="id" value="<%= meetup._id %>"/>
+                            <input type="checkbox" id="attendees" name="attendees" autocomplete="off" <% if(attendingMeetup){ %> checked <% } %> class="attendess-check"/>
+                            <label for="attendees" style="margin-bottom: 50px;">Attending the event?</label>          
+                            <button type="submit" class="button submit-btn">Submit</button>        
+                        </div>
+                    </form>
+                </div>
+            <% } %>
+        </div>
+        
+        <div class="wrapper">
+            <div class="event-image-div"><img class="mlr-50 event-image" src="<%= meetup.image %>" alt="Logo"></div>
+            <div class="detail">
+                <h4>Hosted by <%= meetup.host.firstName +' '+ meetup.host.lastName %></h4>
+                <p><%= meetup.date %></p>
+                <p><%= meetup.startTime %> - <%= meetup.endTime %></p>
+                <p><%= meetup.location %></p>
+            </div>
+        </div>
+        <div class="description">
+            <h3>Details</h3>
+            <p><%= meetup.details %></p> 
+        </div>
+    </div>
+</div>
+<%- include('../partials/footer.ejs') %>

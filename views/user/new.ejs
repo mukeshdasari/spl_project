@@ -1,0 +1,43 @@
+<%- include('../partials/header.ejs') %>
+<div class="content">
+    <div class="center-container">
+        <form action = '/users' method = 'POST' class="mt-20">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" class = "fixed-width" required>
+
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" class = "fixed-width" required>
+        
+            <label for="address">Address</label>
+            <input type="text" id="address" name="address" class = "fixed-width" required>
+
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" class = "fixed-width" required>
+
+            <label for="zip">Zip</label>
+            <input type="text" id="zip" name="zip" class = "fixed-width" required>
+
+            <label for="state">State</label>
+            <input type="text" id="state" name="state" class = "fixed-width" required>
+
+            <label for="interests">Interests</label>
+            <select id="interests" name="interests" class="fixed-width" required>
+                <option value="All">All</option>
+                <option value="Sports">Sports</option>
+                <option value="Music">Music</option>
+                <option value="Games">Games</option>
+                <option value="Adventure">Adventure</option>
+                <option value="Health">Health</option>
+            </select>
+
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" class = "fixed-width" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" class = "fixed-width" minlength="10" maxlength="60" required>
+
+            <button class="button submit-btn mb-100">Register</button>
+        </form>
+    </div>
+</div>
+<%- include('../partials/footer.ejs') %>
